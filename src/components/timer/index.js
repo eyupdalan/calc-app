@@ -11,10 +11,6 @@ export default class Timer extends Component {
 		timerEndHandler:PropTypes.func
 	};
 
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
 		this.timer = setInterval(this.props.decreaseTimer, 1000);
 	}

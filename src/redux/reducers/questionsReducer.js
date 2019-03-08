@@ -66,7 +66,7 @@ function createQuestion() {
 		answer = firstParameter * secondParameter;
 	}
 
-	const questionString = firstParameter.toString() + selectedOperation + secondParameter.toString();
+	const questionString = firstParameter.toString() + selectedOperation + secondParameter.toString()+" = ?";
 	const choices = getShuffledArray([firstParameter.toString() + secondParameter.toString(), secondParameter.toString() + firstParameter.toString(), answer]);
 
 	return {
