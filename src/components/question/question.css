@@ -1,0 +1,17 @@
+.question-card {
+	width: 100%;
+}
+
+.question{
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.choice{
+	margin: 5px;
+}
+
+.choice-button{
+	width:100%;
+	font-size:20px;
+}
