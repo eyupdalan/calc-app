@@ -4,8 +4,8 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {withRouter} from "react-router-dom";
 import * as questionActions from "../../redux/actions/questionActions";
-import Question from "../question";
-import Timer from "../timer";
+import Question from "../Question";
+import Timer from "../Timer";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 
