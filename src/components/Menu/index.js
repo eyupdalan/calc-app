@@ -1,11 +1,23 @@
 import React, {Component} from "react";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import {withRouter} from "react-router-dom";
 
-export default class Menu extends Component{
+
+class Menu extends Component {
+	onClickStart = () => {
+		this.props.history.push("/game");
+	};
+
 	render() {
-		return(
-			<div>
-				Menu
-			</div>
+		return (
+			<Card>
+				<Button variant="success" onClick={this.onClickStart}>
+					Start
+				</Button>
+			</Card>
 		);
 	}
 }
+
+export default withRouter(Menu);

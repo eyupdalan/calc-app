@@ -2,6 +2,7 @@ import "./game.css";
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import {withRouter} from "react-router-dom";
 import * as questionActions from "../../redux/actions/questionActions";
 import Question from "../question";
 import Timer from "../timer";
@@ -13,8 +14,17 @@ class Game extends Component {
 		this.props.actions.createQuestion();
 	}
 
-	timerEndHandler=()=>{
-		this.props.actions.checkAnswer(-1);
+	componentWillUnmount() {
+		this.props.actions.resetGame();
+	}
+
+	timerEndHandler = () => {
+		if (this.props.question.time===0) {
+			this.props.history.push("/");
+			return;
+		}
+
+		this.props.actions.decreaseTimer();
 	};
 
 	render() {
@@ -28,7 +38,7 @@ class Game extends Component {
 						Step <Badge variant="light">{this.props.question.step}</Badge>
 					</Button>
 				</div>
-				<Timer time={this.props.question.time} decreaseTimer={this.props.actions.decreaseTimer} timerEndHandler={this.timerEndHandler}/>
+				<Timer time={this.props.question.time} decreaseTimer={this.timerEndHandler}/>
 				<Question question={this.props.question.question}
 						  choices={this.props.question.choices} onClickChoice={this.props.actions.checkAnswer}/>
 			</div>
@@ -47,4 +57,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Game));

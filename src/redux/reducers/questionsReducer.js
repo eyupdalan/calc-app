@@ -1,4 +1,4 @@
-import {CREATE_QUESTION, CHECK_ANSWER, DECREASE_TIMER} from "../actions/questionActions";
+import {CREATE_QUESTION, CHECK_ANSWER, DECREASE_TIMER, RESET_GAME} from "../actions/questionActions";
 
 const gameState = {
 	time: 5,
@@ -35,6 +35,9 @@ export default (state = gameState, action) => {
 				newState.time--;
 			}
 			return newState;
+		}
+		case RESET_GAME:{
+			return gameState;
 		}
 		default:
 			return state;
