@@ -6,19 +6,22 @@ import configureStore from "./redux/configureStore";
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Menu from "./components/Menu";
-import Game from "./components/Game";
+// import Menu from "./components/Menu";
+// import Game from "./components/Game";
+
+import Game from "./components/Game2";
 
 class App extends Component {
 	render() {
 		return (
 			<Provider store={configureStore()}>
-				<Router>
-					<div className="App">
-						<Route path="/" exact component={Menu}/>
-						<Route path="/game/" component={Game}/>
-					</div>
-				</Router>
+				<Game/>
+				{/*<Router>*/}
+					{/*<div className="App">*/}
+						{/*<Route path="/" exact component={Menu}/>*/}
+						{/*<Route path="/game/" component={Game}/>*/}
+					{/*</div>*/}
+				{/*</Router>*/}
 			</Provider>
 		);
 	}
