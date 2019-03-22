@@ -4,7 +4,7 @@ import configureStore from "./redux/configureStore";
 
 import './App.css';
 
-import Game from "./components/Game2";
+import Game from "./components/Game";
 
 class App extends Component {
 	render() {

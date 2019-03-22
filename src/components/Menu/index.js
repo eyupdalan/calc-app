@@ -1,3 +1,4 @@
+import "./menu.css";
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
@@ -16,31 +17,28 @@ class Menu extends Component {
 	renderMenu() {
 		if (this.props.game.status === "initial" || this.props.game.status === "failure") {
 			return (
-				<div onClick={this.start}>
+				<div onClick={this.start} className={"menu-item"}>
 					Start
 				</div>
 			);
 		}
 
 		if (this.props.game.status === "pause") {
-			return (<div>
-					<div onClick={this.continue}>
-						Continue
-					</div>
-					<div onClick={this.start}>
-						Restart
-					</div>
+			return [
+				<div onClick={this.continue} className={"menu-item"}>
+					Continue
+				</div>,
+				<div onClick={this.start} className={"menu-item"}>
+					Restart
 				</div>
-			);
+			];
 		}
 	}
 
 	render() {
 		return (
-			<div>
-				<div>
-					{this.renderMenu()}
-				</div>
+			<div className={"menu"}>
+				{this.renderMenu()}
 			</div>
 		);
 	}

@@ -1,3 +1,5 @@
+import "./question.css";
+import "../Menu/menu.css";
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
@@ -21,15 +23,14 @@ class Question extends Component {
 
 	render() {
 		return (
-			<div>
-				<hr/>
-				<div>{this.props.game.question.question}</div>
-				<hr/>
-				<div>
+			<div className={"question"}>
+				<div className={"question-text"}>
+					{this.props.game.question.question}
+				</div>
+				<div className={"question-choices"}>
 					{this.renderChoices()}
 				</div>
-				<hr/>
-				<div onClick={this.pause}>
+				<div onClick={this.pause} className={"menu-item"}>
 					Pause
 				</div>
 			</div>

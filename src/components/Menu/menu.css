@@ -1,0 +1,22 @@
+.menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.menu-item {
+	width: 50%;
+	border: 1px solid black;
+	margin: 5px;
+	padding: 20px 50px;
+	text-align: center;
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, .4);
+	color: white;
+}
+
+.menu-item:hover {
+	opacity: 0.5;
+}

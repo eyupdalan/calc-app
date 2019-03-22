@@ -129,7 +129,7 @@ export class Question {
 		if (choices.length === 1) {
 			return choices;
 		}
-		const rand = Math.floor(Math.random() * this.choices.length);
+		const rand = Math.floor(Math.random() * choices.length);
 		return [choices[rand], ...this._shuffleChoices(choices.filter((_, i) => i !== rand))];
 	}
 }
@@ -151,16 +151,11 @@ export default class Game {
 		if (this.question.answer === userChoice) {
 			return this._increasePoint().CreateQuestion();
 		}
-		return this._decreasePoint().Failure();
+		return this.Failure();
 	}
 
 	_increasePoint() {
 		this.point += 10;
-		return this;
-	}
-
-	_decreasePoint() {
-		this.point -= 10;
 		return this;
 	}
 

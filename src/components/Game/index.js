@@ -3,8 +3,8 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import * as gameActions from "../../redux/actions/gameActions";
-import Menu from "../Menu2";
-import Question from "../Question2";
+import Menu from "../Menu";
+import Question from "../Question";
 
 class Game extends Component {
 	componentDidMount() {
@@ -23,22 +23,32 @@ class Game extends Component {
 		return (<Question/>)
 	}
 
+	renderInfo() {
+		if (this.props.game.status === "running") {
+			return;
+		}
+
+		if (this.props.game.status === "failure") {
+			return <div className={"failure"}>FAILED!!!</div>
+		}
+
+		if (this.props.game.status === "initial" || this.props.game.status === "pause") {
+			return <div> --- CALCULATION EXERCISES --- </div>
+		}
+	}
+
 	render() {
 		return (
-			<div className={this.props.game.status}>
-				<div>Game status: {this.props.game.status}</div>
-				<hr/>
-				<div>
-					<span>Point: {this.props.game.point}</span>
-					<span>  |  </span>
-					<span>Step: {this.props.game.step}</span>
+			<div className={`game ${this.props.game.status}`}>
+				<div className={"game-header"}>
+					<div>Point: {this.props.game.point}</div>
+					<div>Step: {this.props.game.step}</div>
+					<div>{this.props.game.timer}</div>
 				</div>
-				<hr/>
-				<div>
-					{this.props.game.timer}
-				</div>
-				<hr/>
-				<div>
+				<div className={"game-content"}>
+					<div className={"game-info"}>
+						{this.renderInfo()}
+					</div>
 					{this.navigateGame()}
 				</div>
 			</div>
