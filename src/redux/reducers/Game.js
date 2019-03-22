@@ -27,7 +27,6 @@ export class Question {
 	}
 
 	CreateQuestion() {
-		debugger;
 		this._setOperation();
 		this._generateNumbers();
 		this._setCorrectAnswer();
@@ -78,7 +77,6 @@ export class Question {
 	}
 
 	_generateFakeAnswers() {
-		debugger;
 		while (this.choices.length < 2) {
 			const random = Math.floor(Math.random() * 100000) % 3;
 			let newValue;
@@ -146,41 +144,49 @@ export default class Game {
 	CreateQuestion() {
 		this.step += 1;
 		this.question = new Question().CreateQuestion();
-		return this.Run();
+		return this._resetTimer().Run();
 	}
 
 	CheckAnswer(userChoice) {
 		if (this.question.answer === userChoice) {
-			this._increasePoint();
-			return true;
+			return this._increasePoint().CreateQuestion();
 		}
-		this._decreasePoint();
-		return false;
+		return this._decreasePoint().Failure();
 	}
 
 	_increasePoint() {
 		this.point += 10;
+		return this;
 	}
 
 	_decreasePoint() {
 		this.point -= 10;
+		return this;
 	}
 
-	DecreaseTimer() {
+	_decreaseTimer() {
 		this.timer -= 1;
 		return this;
 	}
 
 	ControlTimer() {
-		if (this.timer === 0) {
-			return this.ResetTime().Failure();
+		if (this.status !== "running") {
+			return this;
 		}
-		return this.DecreaseTimer();
+
+		if (this.timer === 0) {
+			return this._resetTimer().Failure();
+		}
+		return this._decreaseTimer();
 	}
 
-	ResetTime() {
+	_resetTimer() {
 		this.timer = 5;
 		return this;
+	}
+
+	Start(){
+		return this.Reset().CreateQuestion();
 	}
 
 	Pause() {
@@ -200,7 +206,6 @@ export default class Game {
 
 	Reset() {
 		this.question = DefaultQuestion;
-		this.timer = 5;
 		this.step = 0;
 		this.point = 0;
 		this.status = "initial"; //"running", "pause", "failure"

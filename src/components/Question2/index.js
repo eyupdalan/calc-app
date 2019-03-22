@@ -9,10 +9,26 @@ class Question extends Component {
 		this.props.actions.pauseGame();
 	};
 
+	onSelectChoice = (choice) => {
+		return () => this.props.actions.checkSelectedAnswer(choice);
+	};
+
+	renderChoices() {
+		return this.props.game.question.choices.map(choice => {
+			return <div key={choice} onClick={this.onSelectChoice(choice)}>{choice}</div>
+		});
+	}
+
 	render() {
 		return (
 			<div>
-				<div>Question {JSON.stringify(this.props.game)}</div>
+				<hr/>
+				<div>{this.props.game.question.question}</div>
+				<hr/>
+				<div>
+					{this.renderChoices()}
+				</div>
+				<hr/>
 				<div onClick={this.pause}>
 					Pause
 				</div>

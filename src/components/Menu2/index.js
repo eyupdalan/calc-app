@@ -38,7 +38,6 @@ class Menu extends Component {
 	render() {
 		return (
 			<div>
-				<div>Menu {JSON.stringify(this.props.game)}</div>
 				<div>
 					{this.renderMenu()}
 				</div>
